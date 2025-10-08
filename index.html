@@ -4,373 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mi Portafolio - Ingeniero en Sistemas</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: #0a0e27;
-            background-image: 
-                radial-gradient(at 20% 30%, rgba(26, 35, 126, 0.5) 0px, transparent 50%),
-                radial-gradient(at 80% 70%, rgba(13, 71, 161, 0.5) 0px, transparent 50%),
-                radial-gradient(at 50% 50%, rgba(21, 101, 192, 0.3) 0px, transparent 50%);
-            color: #333;
-            line-height: 1.6;
-            position: relative;
-            overflow-x: hidden;
-        }
-        
-        body::before {
-            content: '';
-            position: fixed;
-            width: 100%;
-            height: 100%;
-            top: 0;
-            left: 0;
-            background-image: 
-                repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(255,255,255,0.03) 2px, rgba(255,255,255,0.03) 4px),
-                repeating-linear-gradient(90deg, transparent, transparent 2px, rgba(255,255,255,0.03) 2px, rgba(255,255,255,0.03) 4px);
-            pointer-events: none;
-            z-index: 0;
-        }
-
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 20px;
-            position: relative;
-            z-index: 1;
-        }
-
-        header {
-            background: rgba(15, 23, 42, 0.95);
-            padding: 60px 40px;
-            border-radius: 20px;
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
-            text-align: center;
-            margin-bottom: 40px;
-            animation: fadeIn 1s ease-in;
-            border: 1px solid rgba(59, 130, 246, 0.3);
-            position: relative;
-            overflow: hidden;
-        }
-        
-        header::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(59, 130, 246, 0.1), transparent);
-            animation: shine 3s infinite;
-        }
-        
-        @keyframes shine {
-            to {
-                left: 100%;
-            }
-        }
-        
-        .header-content {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 40px;
-            flex-wrap: wrap;
-        }
-        
-        .profile-image-container {
-            position: relative;
-        }
-        
-        .profile-image {
-            width: 180px;
-            height: 180px;
-            border-radius: 50%;
-            border: 5px solid #3b82f6;
-            box-shadow: 0 0 30px rgba(59, 130, 246, 0.5);
-            object-fit: cover;
-            background: linear-gradient(135deg, #1e3a8a, #3b82f6);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: #fff;
-            font-size: 4em;
-            font-weight: bold;
-        }
-        
-        .header-text {
-            text-align: left;
-        }
-
-        header h1 {
-            font-size: 3em;
-            color: #3b82f6;
-            margin-bottom: 10px;
-            text-shadow: 0 0 20px rgba(59, 130, 246, 0.5);
-        }
-
-        header p {
-            font-size: 1.3em;
-            color: #94a3b8;
-            margin-bottom: 5px;
-        }
-
-        .subtitle {
-            color: #64748b;
-            font-size: 1em;
-        }
-
-        nav {
-            background: rgba(15, 23, 42, 0.9);
-            padding: 15px;
-            border-radius: 15px;
-            margin-bottom: 30px;
-            text-align: center;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
-            border: 1px solid rgba(59, 130, 246, 0.2);
-        }
-
-        nav a {
-            color: #3b82f6;
-            text-decoration: none;
-            margin: 0 20px;
-            font-weight: 600;
-            transition: color 0.3s;
-            font-size: 1.1em;
-        }
-
-        nav a:hover {
-            color: #60a5fa;
-            text-shadow: 0 0 10px rgba(59, 130, 246, 0.5);
-        }
-
-        section {
-            background: rgba(15, 23, 42, 0.95);
-            padding: 40px;
-            border-radius: 20px;
-            margin-bottom: 30px;
-            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.4);
-            animation: slideUp 0.8s ease-out;
-            border: 1px solid rgba(59, 130, 246, 0.2);
-        }
-
-        h2 {
-            color: #3b82f6;
-            font-size: 2.2em;
-            margin-bottom: 25px;
-            border-bottom: 3px solid #3b82f6;
-            padding-bottom: 10px;
-            text-shadow: 0 0 15px rgba(59, 130, 246, 0.3);
-        }
-
-        .about-content {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 30px;
-            margin-top: 20px;
-        }
-        
-        .about-content p {
-            color: #cbd5e1;
-        }
-
-        .experience-item {
-            background: linear-gradient(135deg, rgba(30, 58, 138, 0.5) 0%, rgba(59, 130, 246, 0.3) 100%);
-            padding: 20px;
-            border-radius: 12px;
-            margin-bottom: 15px;
-            border-left: 5px solid #3b82f6;
-        }
-
-        .experience-item h3 {
-            color: #60a5fa;
-            margin-bottom: 8px;
-        }
-        
-        .experience-item p {
-            color: #cbd5e1;
-        }
-
-        .skills-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 20px;
-            margin-top: 20px;
-        }
-
-        .skill-category {
-            background: linear-gradient(135deg, rgba(30, 58, 138, 0.8) 0%, rgba(59, 130, 246, 0.8) 100%);
-            padding: 25px;
-            border-radius: 15px;
-            color: white;
-            box-shadow: 0 8px 20px rgba(59, 130, 246, 0.3);
-            transition: transform 0.3s;
-            border: 1px solid rgba(96, 165, 250, 0.3);
-        }
-
-        .skill-category:hover {
-            transform: translateY(-5px);
-        }
-
-        .skill-category h3 {
-            margin-bottom: 15px;
-            font-size: 1.3em;
-        }
-
-        .skill-category ul {
-            list-style: none;
-        }
-
-        .skill-category li {
-            padding: 8px 0;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
-        }
-
-        .skill-category li:last-child {
-            border-bottom: none;
-        }
-
-        .projects-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 25px;
-            margin-top: 20px;
-        }
-
-        .project-card {
-            background: rgba(30, 41, 59, 0.9);
-            border-radius: 15px;
-            overflow: hidden;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-            transition: transform 0.3s, box-shadow 0.3s;
-            border: 1px solid rgba(59, 130, 246, 0.2);
-        }
-
-        .project-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 15px 40px rgba(59, 130, 246, 0.4);
-        }
-
-        .project-header {
-            background: linear-gradient(135deg, rgba(30, 58, 138, 0.9) 0%, rgba(59, 130, 246, 0.9) 100%);
-            padding: 25px;
-            color: white;
-        }
-
-        .project-header h3 {
-            font-size: 1.5em;
-            margin-bottom: 8px;
-        }
-
-        .project-body {
-            padding: 25px;
-        }
-        
-        .project-body p {
-            color: #cbd5e1;
-        }
-
-        .project-tags {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 8px;
-            margin-top: 15px;
-        }
-
-        .tag {
-            background: rgba(59, 130, 246, 0.2);
-            padding: 5px 12px;
-            border-radius: 20px;
-            font-size: 0.85em;
-            color: #60a5fa;
-            font-weight: 600;
-            border: 1px solid rgba(59, 130, 246, 0.3);
-        }
-
-        .contact-info {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 20px;
-            margin-top: 20px;
-        }
-
-        .contact-card {
-            background: linear-gradient(135deg, rgba(30, 58, 138, 0.8) 0%, rgba(59, 130, 246, 0.8) 100%);
-            padding: 25px;
-            border-radius: 15px;
-            color: white;
-            text-align: center;
-            transition: transform 0.3s;
-            border: 1px solid rgba(96, 165, 250, 0.3);
-        }
-
-        .contact-card:hover {
-            transform: scale(1.05);
-        }
-
-        .contact-card h3 {
-            margin-bottom: 10px;
-            font-size: 1.2em;
-        }
-
-        footer {
-            text-align: center;
-            padding: 30px;
-            color: white;
-            font-size: 1em;
-        }
-
-        @keyframes fadeIn {
-            from {
-                opacity: 0;
-                transform: translateY(-20px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        @keyframes slideUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        @media (max-width: 768px) {
-            header h1 {
-                font-size: 2em;
-            }
-            
-            .header-content {
-                flex-direction: column;
-            }
-            
-            .header-text {
-                text-align: center;
-            }
-
-            .about-content {
-                grid-template-columns: 1fr;
-            }
-
-            nav a {
-                display: block;
-                margin: 10px 0;
-            }
-        }
-    </style>
+        <link rel="stylesheet" href="styles.css">
+            <link rel="stylesheet" type='text/css' href="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/devicon.min.css" />
 </head>
 <body>
     <div class="container">
@@ -378,14 +13,13 @@
             <div class="header-content">
                 <div class="profile-image-container">
                     <div class="profile-image">
-                        AM
-                        <!-- Reemplaza esto con tu imagen: <img src="tu-foto.jpg" alt="Angel Méndez Aguilar" class="profile-image"> -->
+                      <img src="assets/angel.png" alt="Angel Méndez Aguilar" class="profile-image"> 
                     </div>
                 </div>
                 <div class="header-text">
                     <h1>Angel Méndez Aguilar</h1>
                     <p>Ingeniero en Sistemas</p>
-                    <p class="subtitle">Egresado 2025 | Soporte IT desde 2023</p>
+                    <p class="subtitle">Soporte IT y Desarrollador Web</p>
                 </div>
             </div>
         </header>
@@ -399,37 +33,43 @@
         </nav>
 
         <section id="sobre-mi">
-            <h2>Sobre Mí</h2>
-            <div class="about-content">
-                <div>
-                    <p style="font-size: 1.1em; margin-bottom: 20px;">
-                        Ingeniero en Sistemas recién egresado con pasión por la tecnología y el desarrollo de soluciones innovadoras. Con experiencia práctica en el área de Soporte IT desde 2023, he desarrollado habilidades tanto en el desarrollo de software como en la resolución de problemas técnicos complejos.
-                    </p>
-                    <p style="font-size: 1.1em;">
-                        Mi enfoque combina conocimientos técnicos sólidos con una mentalidad orientada a resultados, siempre buscando optimizar procesos y crear experiencias de usuario excepcionales.
-                    </p>
-                </div>
-                <div>
-                    <div class="experience-item">
-                        <h3>🎓 Formación Académica</h3>
-                        <p><strong>Ingeniería en Sistemas</strong></p>
-                        <p>Egresado en 2025</p>
-                    </div>
-                    <div class="experience-item">
-                        <h3>💼 Experiencia Profesional</h3>
-                        <p><strong>Soporte IT</strong></p>
-                        <p>2023 - Presente</p>
-                        <p style="margin-top: 10px; font-size: 0.95em;">Resolución de incidencias técnicas, mantenimiento de sistemas, y soporte a usuarios.</p>
-                    </div>
-                </div>
+    <h2>Sobre Mí</h2>
+
+    <div class="about-intro-text">
+        <p style="font-size: 1.1em; margin-bottom: 20px; color: #cbd5e1;">
+            Ingeniero en Sistemas con pasión por la tecnología y el desarrollo de soluciones innovadoras. Con experiencia práctica en el área de Soporte IT desde 2023, he desarrollado habilidades tanto en el desarrollo de software como en la resolución de problemas técnicos complejos.
+        </p>
+        <p style="font-size: 1.1em;color: #cbd5e1;">
+            Mi enfoque combina conocimientos técnicos sólidos con una mentalidad orientada a resultados, siempre buscando optimizar procesos y crear experiencias de usuario excepcionales.
+        </p>
+    </div>
+
+    <div class="about-details-grid">
+        
+        <div class="about-experience-column">
+            <div class="experience-item">
+                <h3>🎓 Formación Académica</h3>
+                <p><strong>Ingeniería en Sistemas</strong></p>
+                <p>Egresado en 2025</p>
             </div>
-        </section>
+            <div class="experience-item">
+                <h3>💼 Experiencia Profesional</h3>
+                <p><strong>Soporte IT</strong></p>
+                <p>2023 - Presente</p>
+                <p style="margin-top: 10px; font-size: 0.95em;">Resolución de incidencias técnicas, mantenimiento de sistemas, y soporte a usuarios.</p>
+            </div>
+        </div>
+
+        <div class="about-image-column">
+            <img src="assets/about_me.png" alt="Fotografía de Angel Méndez Aguilar" class="about-me-photo">
+        </div>
+    </div>
+</section>
         <section id="certificaciones">
             <h2>Certificaciones</h2>
             <div class="certifications-grid">
                 <div class="certification-card">
-                    <div class="cert-icon">📜</div>
-                    <h3 style="color: #cbd5e1;">Certificación en Laravel</h3>
+                    <img width="24" height="24" src="https://img.icons8.com/external-tal-revivo-color-tal-revivo/24/external-laravel-is-a-free-open-source-php-web-framework-logo-color-tal-revivo.png" alt="external-laravel-is-a-free-open-source-php-web-framework-logo-color-tal-revivo"/>                    <h3 style="color: #cbd5e1;">Certificación en Laravel</h3>
                     <p class="cert-issuer" style="color: #cbd5e1;">UMAEE</p>
                     <p class="cert-year" style="color: #cbd5e1;">2024</p>
                     <div class="cert-description" style="color: #cbd5e1;"> 
@@ -437,8 +77,7 @@
                     </div>
                 </div>
                 <div class="certification-card">
-                    <div class="cert-icon">💻</div>
-                    <h3 style="color: #cbd5e1;">Desarrollo Web</h3>
+                    <img width="30" height="30" src="https://img.icons8.com/3d-fluency/94/web.png" alt="web"/>                    <h3 style="color: #cbd5e1;">Desarrollo Web</h3>
                     <p class="cert-issuer" style="color: #cbd5e1;">UMAEE</p>
                     <p class="cert-year" style="color: #cbd5e1;">2024</p>
                     <div class="cert-description" style="color: #cbd5e1;">
@@ -446,7 +85,7 @@
                     </div>
                 </div>
                 <div class="certification-card">
-                    <div class="cert-icon">🛠️</div>
+                    <img width="30" height="30" src="https://img.icons8.com/color/48/computer-support.png" alt="computer-support"/>
                     <h3 style="color: #cbd5e1;">Soporte IT</h3>
                     <p class="cert-issuer" style="color: #cbd5e1;">Google</p>
                     <p class="cert-year" style="color: #cbd5e1;">2022</p>
@@ -456,418 +95,197 @@
                 </div>
             </div>
         </section>
-        <section id="habilidades">
-            <h2>Stack Tecnológico</h2>
-            <div class="skills-grid">
-                <div class="skill-category">
-                    <h3>💻 Lenguajes de Programación</h3>
-                    <ul>
-                        <li>HTML5</li>
-                        <li>CSS3</li>
-                        <li>JavaScript</li>
-                        <li>PHP</li>
-                        <li>C#</li>
-                        <li>Python</li>
-                    </ul>
-                </div>
-                <div class="skill-category">
-                    <h3>🗄️ Bases de Datos</h3>
-                    <ul>
-                        <li>MySQL</li>
-                        <li>SQL Server</li>
-                        <li>PostgreSQL</li>
-                        <li>Diseño de BD</li>
-                        <li>Optimización de queries</li>
-                    </ul>
-                </div>
-                <div class="skill-category">
-                    <h3>🛠️ Herramientas y Tecnologías</h3>
-                    <ul>
-                        <li>Git / GitHub</li>
-                        <li>Visual Studio</li>
-                        <li>VS Code</li>
-                        <li>Postman</li>
-                        <li>Soporte IT</li>
-                    </ul>
-                </div>
-            </div>
-        </section>
+        <section id="stack" class="stack-section">
+  <h2 style="text-align: start; margin-left: 5%;">Mi stack</h2>
+  <div class="stack-grid">
+    <div class="stack-item">
+      <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/html5/html5-original.svg" alt="html5">
+      <p>HTML5</p>
+    </div>
+    <div class="stack-item">
+      <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/css3/css3-plain.svg" alt="CSS3">
+      <p>CSS3</p>
+    </div>
+    <div class="stack-item">
+      <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/javascript/javascript-original.svg" alt="JavaScript">
+      <p>JavaScript</p>
+    </div>
+    <div class="stack-item">
+      <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/laravel/laravel-original.svg" alt="Laravel">
+      <p>Laravel</p>
+    </div>
+    <div class="stack-item">
+      <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/flutter/flutter-original.svg" alt="Flutter">
+      <p>Flutter</p>
+    </div>
+    <div class="stack-item">
+      <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/csharp/csharp-original.svg" alt="csharp">
+      <p>C#</p>
+    </div>
+    <div class="stack-item">
+      <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/git/git-original.svg" alt="Git">
+      <p>Git</p>
+    </div>
+    <div class="stack-item">
+      <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/notion/notion-original.svg" alt="Notion">
+      <p>Notion</p>
+    </div>
+    <div class="stack-item">
+      <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/wordpress/wordpress-plain.svg" alt="Odoo">
+      <p>WordPress</p>
+    </div>
+    <div class="stack-item">
+      <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/python/python-original.svg" alt="Python">
+      <p>Python</p>
+    </div>
+    <div class="stack-item">
+      <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/php/php-original.svg" alt="PHP">
+      <p>PHP</p>
+    </div>
+    <div class="stack-item">
+      <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/mysql/mysql-original.svg" alt="MySQL">
+      <p>MySQL</p>
+    </div>
+  </div>
+</section>
+        <section id="proyectos" class="projects-carousel-section">
+  <h2>Proyectos Destacados</h2>
 
-        <section id="proyectos">
-            <h2>Proyectos</h2>
-            <div class="projects-grid">
-                <div class="project-card">
-                    <div class="project-header">
-                        <h3>Sistema de Gestión Web</h3>
-                        <p>Proyecto Profesional</p>
-                    </div>
-                    <div class="project-body">
-                        <p>Sistema completo de gestión empresarial con panel de administración, control de usuarios y generación de reportes.</p>
-                        <div class="project-tags">
-                            <span class="tag">PHP</span>
-                            <span class="tag">MySQL</span>
-                            <span class="tag">JavaScript</span>
-                            <span class="tag">CSS</span>
-                        </div>
-                    </div>
-                </div>
+  <div class="carousel-container">
+    <button class="carousel-btn prev">&#10094;</button>
+    <div class="carousel-track">
+      <!-- Proyecto 1 -->
+      <div class="project-card active">
+        <h3>Omnimercado</h3>
+        <p class="project-type">Pagina web de e-commerce tecnológico</p>
+        <p class="project-desc">
+          Sitio web de e-commerce desarrollado con Shopify HTML Y CSS.
+        </p>
+        <div class="project-tags">
+          <span class="tag">HTML</span>
+          <span class="tag">Shopify</span>
+          <span class="tag">JavaScript</span>
+          <span class="tag">CSS</span>
+        </div>
+      </div>
 
-                <div class="project-card">
-                    <div class="project-header">
-                        <h3>Landing Page Corporativa</h3>
-                        <p>Página Web</p>
-                    </div>
-                    <div class="project-body">
-                        <p>Sitio web moderno y responsivo para empresa local, con diseño atractivo y optimizado para conversión.</p>
-                        <div class="project-tags">
-                            <span class="tag">HTML5</span>
-                            <span class="tag">CSS3</span>
-                            <span class="tag">JavaScript</span>
-                        </div>
-                    </div>
-                </div>
+      <!-- Proyecto 2 -->
+      <div class="project-card">
+        <h3>Landing Page Corporativa</h3>
+        <p class="project-type">Página Web</p>
+        <p class="project-desc">
+          Sitio web moderno y responsivo para empresa local, con diseño atractivo y optimizado para conversión.
+        </p>
+        <div class="project-tags">
+          <span class="tag">HTML5</span>
+          <span class="tag">CSS3</span>
+          <span class="tag">JavaScript</span>
+        </div>
+      </div>
 
-                <div class="project-card">
-                    <div class="project-header">
-                        <h3>Automatización con Python</h3>
-                        <p>Proyecto Personal</p>
-                    </div>
-                    <div class="project-body">
-                        <p>Scripts de automatización para tareas repetitivas, procesamiento de datos y generación de reportes automáticos.</p>
-                        <div class="project-tags">
-                            <span class="tag">Python</span>
-                            <span class="tag">Pandas</span>
-                            <span class="tag">Automation</span>
-                        </div>
-                    </div>
-                </div>
+      <!-- Proyecto 3 -->
+      <div class="project-card">
+        <h3>Automatización con Python</h3>
+        <p class="project-type">Proyecto Personal</p>
+        <p class="project-desc">
+          Scripts de automatización para tareas repetitivas, procesamiento de datos y generación de reportes automáticos.
+        </p>
+        <div class="project-tags">
+          <span class="tag">Python</span>
+          <span class="tag">Pandas</span>
+          <span class="tag">Automation</span>
+        </div>
+      </div>
 
-                <div class="project-card">
-                    <div class="project-header">
-                        <h3>API REST con C#</h3>
-                        <p>Proyecto Personal</p>
-                    </div>
-                    <div class="project-body">
-                        <p>API RESTful desarrollada en C# para gestión de inventario, con autenticación y documentación completa.</p>
-                        <div class="project-tags">
-                            <span class="tag">C#</span>
-                            <span class="tag">.NET</span>
-                            <span class="tag">SQL Server</span>
-                            <span class="tag">REST API</span>
-                        </div>
-                    </div>
-                </div>
+      <!-- Proyecto 4 -->
+      <div class="project-card">
+        <h3>API REST con C#</h3>
+        <p class="project-type">Proyecto Personal</p>
+        <p class="project-desc">
+          API RESTful desarrollada en C# para gestión de inventario, con autenticación y documentación completa.
+        </p>
+        <div class="project-tags">
+          <span class="tag">C#</span>
+          <span class="tag">.NET</span>
+          <span class="tag">SQL Server</span>
+          <span class="tag">REST API</span>
+        </div>
+      </div>
 
-                <div class="project-card">
-                    <div class="project-header">
-                        <h3>Portfolio Interactivo</h3>
-                        <p>Página Web</p>
-                    </div>
-                    <div class="project-body">
-                        <p>Sitio web personal con animaciones suaves, diseño moderno y secciones interactivas para mostrar habilidades y proyectos.</p>
-                        <div class="project-tags">
-                            <span class="tag">HTML</span>
-                            <span class="tag">CSS</span>
-                            <span class="tag">JavaScript</span>
-                        </div>
-                    </div>
-                </div>
+      <!-- Proyecto 5 -->
+      <div class="project-card">
+        <h3>Portfolio Interactivo</h3>
+        <p class="project-type">Página Web</p>
+        <p class="project-desc">
+          Sitio web personal con animaciones suaves, diseño moderno y secciones interactivas para mostrar habilidades y proyectos.
+        </p>
+        <div class="project-tags">
+          <span class="tag">HTML</span>
+          <span class="tag">CSS</span>
+          <span class="tag">JavaScript</span>
+        </div>
+      </div>
 
-                <div class="project-card">
-                    <div class="project-header">
-                        <h3>Dashboard de Análisis</h3>
-                        <p>Proyecto Profesional</p>
-                    </div>
-                    <div class="project-body">
-                        <p>Panel de control interactivo para visualización de métricas y KPIs en tiempo real con gráficos dinámicos.</p>
-                        <div class="project-tags">
-                            <span class="tag">JavaScript</span>
-                            <span class="tag">PHP</span>
-                            <span class="tag">MySQL</span>
-                            <span class="tag">Charts</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
+      <!-- Proyecto 6 -->
+      <div class="project-card">
+        <h3>Dashboard de Análisis</h3>
+        <p class="project-type">Proyecto Profesional</p>
+        <p class="project-desc">
+          Panel de control interactivo para visualización de métricas y KPIs en tiempo real con gráficos dinámicos.
+        </p>
+        <div class="project-tags">
+          <span class="tag">JavaScript</span>
+          <span class="tag">PHP</span>
+          <span class="tag">MySQL</span>
+          <span class="tag">Charts</span>
+        </div>
+      </div>
+    </div>
+    <button class="carousel-btn next">&#10095;</button>
+
+    <!-- Indicadores -->
+    <div class="carousel-indicators"></div>
+  </div>
+</section>
+
+
         <section id="contacto">
             <h2>Contacto</h2>
-            <p style="font-size: 1.1em; margin-bottom: 25px; text-align: center;">
+            <p style="font-size: 1.1em; margin-bottom: 25px; text-align: center; color: #fcfbff">
                 ¿Interesado en trabajar juntos? ¡No dudes en contactarme!
             </p>
             <div class="contact-info">
-                <div class="contact-card">
-                    <img width="50" height="50" src="https://img.icons8.com/ios-filled/50/gmail-new.png" alt="gmail-new"/>
-                    <h3>Email</h3>
-                    <p>angel.maamx@gmail.com</p>
-                </div>
-                <div class="contact-card">
-                    <img width="50" height="50" src="https://img.icons8.com/ios-filled/50/linkedin.png" alt="linkedin"/>
-                    <h3>LinkedIn</h3>
-                    <p>linkedin.com/in/tuperfil</p>
-                </div>
-                <a href="https://github.com/angelvs18" target="_blank"><div class="contact-card">
-                    <img width="50" height="50" src="https://img.icons8.com/ios-filled/50/github.png" alt="github"/>
-                    <h3>GitHub</h3>
-                    <p>github.com/angelvs18</p>
-                </div></a>
-                <div class="contact-card">
-                    <img width="50" height="50" src="https://img.icons8.com/ios-filled/50/apple-phone.png" alt="apple-phone"/>
-                    <h3>Teléfono</h3>
-                    <p>+52 123 456 7890</p>
-                </div>
-            </div>
+    <a href="mailto:angel.maamx@gmail.com" class="contact-card">
+        <img width="50" height="50" src="https://img.icons8.com/ios-filled/50/gmail-new.png" alt="gmail-new"/>
+        <h3>Email</h3>
+        <p>angel.maamx@gmail.com</p>
+    </a>
+
+    <a href="https://www.linkedin.com/in/angelmendezaguilar?lipi=urn%3Ali%3Apage%3Ad_flagship3_profile_view_base_contact_details%3BAq5zUiQETRu0VV6dkgUStg%3D%3D" target="_blank" class="contact-card">
+        <img width="50" height="50" src="https://img.icons8.com/ios-filled/50/linkedin.png" alt="linkedin"/>
+        <h3>LinkedIn</h3>
+        <p>linkedin.com/in/angelmendez</p>
+    </a>
+
+    <a href="https://github.com/angelvs18" target="_blank" class="contact-card">
+        <img width="50" height="50" src="https://img.icons8.com/ios-filled/50/github.png" alt="github"/>
+        <h3>GitHub</h3>
+        <p>github.com/angelvs18</p>
+    </a>
+
+    <a href="tel:+529933053417" class="contact-card">
+        <img width="50" height="50" src="https://img.icons8.com/ios-filled/50/apple-phone.png" alt="apple-phone"/>
+        <h3>Teléfono</h3>
+        <p>+52 993 305 3417</p>
+    </a>
+</div>
+
         </section>
 
         <footer>
-            <p>&copy; 2025 Angel Méndez Aguilar - Ingeniero en Sistemas. Todos los derechos reservados.</p>
+            <p>&copy; 2025 Angel Méndez Aguilar. Todos los derechos reservados.</p>
         </footer>
     </div>
-    
-    <script>
-        // Animación de escritura para el nombre
-        const nameElement = document.querySelector('header h1');
-        const originalText = nameElement.textContent;
-        nameElement.textContent = '';
-        let charIndex = 0;
-        
-        function typeWriter() {
-            if (charIndex < originalText.length) {
-                nameElement.textContent += originalText.charAt(charIndex);
-                charIndex++;
-                setTimeout(typeWriter, 100);
-            }
-        }
-        
-        setTimeout(typeWriter, 500);
-        
-        // Animación de aparición al hacer scroll
-        const observerOptions = {
-            threshold: 0.2,
-            rootMargin: '0px 0px -50px 0px'
-        };
-        
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.style.opacity = '0';
-                    entry.target.style.transform = 'translateY(30px)';
-                    
-                    setTimeout(() => {
-                        entry.target.style.transition = 'opacity 0.8s, transform 0.8s';
-                        entry.target.style.opacity = '1';
-                        entry.target.style.transform = 'translateY(0)';
-                    }, 100);
-                    
-                    observer.unobserve(entry.target);
-                }
-            });
-        }, observerOptions);
-        
-        document.querySelectorAll('section').forEach(section => {
-            observer.observe(section);
-        });
-        
-        // Animación de las skill cards al aparecer
-        const skillCards = document.querySelectorAll('.skill-category');
-        const skillObserver = new IntersectionObserver((entries) => {
-            entries.forEach((entry, index) => {
-                if (entry.isIntersecting) {
-                    setTimeout(() => {
-                        entry.target.style.opacity = '0';
-                        entry.target.style.transform = 'scale(0.8)';
-                        
-                        setTimeout(() => {
-                            entry.target.style.transition = 'all 0.5s ease-out';
-                            entry.target.style.opacity = '1';
-                            entry.target.style.transform = 'scale(1)';
-                        }, 50);
-                    }, index * 150);
-                    
-                    skillObserver.unobserve(entry.target);
-                }
-            });
-        }, observerOptions);
-        
-        skillCards.forEach(card => skillObserver.observe(card));
-        
-        // Animación de las project cards
-        const projectCards = document.querySelectorAll('.project-card');
-        const projectObserver = new IntersectionObserver((entries) => {
-            entries.forEach((entry, index) => {
-                if (entry.isIntersecting) {
-                    setTimeout(() => {
-                        entry.target.style.opacity = '0';
-                        entry.target.style.transform = 'translateX(-50px) rotateY(-15deg)';
-                        
-                        setTimeout(() => {
-                            entry.target.style.transition = 'all 0.6s ease-out';
-                            entry.target.style.opacity = '1';
-                            entry.target.style.transform = 'translateX(0) rotateY(0)';
-                        }, 50);
-                    }, index * 120);
-                    
-                    projectObserver.unobserve(entry.target);
-                }
-            });
-        }, observerOptions);
-        
-        projectCards.forEach(card => projectObserver.observe(card));
-        
-        // Animación de las certification cards
-        const certCards = document.querySelectorAll('.certification-card');
-        const certObserver = new IntersectionObserver((entries) => {
-            entries.forEach((entry, index) => {
-                if (entry.isIntersecting) {
-                    setTimeout(() => {
-                        entry.target.style.opacity = '0';
-                        entry.target.style.transform = 'scale(0.5) rotate(-5deg)';
-                        
-                        setTimeout(() => {
-                            entry.target.style.transition = 'all 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55)';
-                            entry.target.style.opacity = '1';
-                            entry.target.style.transform = 'scale(1) rotate(0)';
-                        }, 50);
-                    }, index * 200);
-                    
-                    certObserver.unobserve(entry.target);
-                }
-            });
-        }, observerOptions);
-        
-        certCards.forEach(card => certObserver.observe(card));
-        
-        // Efecto parallax en el fondo
-        let ticking = false;
-        
-        window.addEventListener('scroll', () => {
-            if (!ticking) {
-                window.requestAnimationFrame(() => {
-                    const scrolled = window.pageYOffset;
-                    const parallaxElements = document.querySelectorAll('section');
-                    
-                    parallaxElements.forEach(el => {
-                        const speed = 0.5;
-                        const yPos = -(scrolled * speed);
-                        el.style.backgroundPosition = `center ${yPos}px`;
-                    });
-                    
-                    ticking = false;
-                });
-                
-                ticking = true;
-            }
-        });
-        
-        // Smooth scroll para los links de navegación
-        document.querySelectorAll('nav a').forEach(anchor => {
-            anchor.addEventListener('click', function(e) {
-                e.preventDefault();
-                const targetId = this.getAttribute('href');
-                const targetSection = document.querySelector(targetId);
-                
-                targetSection.scrollIntoView({
-                    behavior: 'smooth',
-                    block: 'start'
-                });
-            });
-        });
-        
-        // Animación de contador para los años de experiencia
-        const experienceItems = document.querySelectorAll('.experience-item');
-        experienceItems.forEach(item => {
-            item.addEventListener('mouseenter', function() {
-                this.style.transform = 'translateX(10px)';
-                this.style.transition = 'transform 0.3s ease';
-            });
-            
-            item.addEventListener('mouseleave', function() {
-                this.style.transform = 'translateX(0)';
-            });
-        });
-        
-        // Efecto de brillo en las skill tags al pasar el mouse
-        const tags = document.querySelectorAll('.tag');
-        tags.forEach(tag => {
-            tag.addEventListener('mouseenter', function() {
-                this.style.boxShadow = '0 0 15px rgba(59, 130, 246, 0.6)';
-                this.style.transform = 'scale(1.1)';
-                this.style.transition = 'all 0.3s ease';
-            });
-            
-            tag.addEventListener('mouseleave', function() {
-                this.style.boxShadow = 'none';
-                this.style.transform = 'scale(1)';
-            });
-        });
-        
-        // Animación de partículas en el fondo (efecto sutil)
-        const canvas = document.createElement('canvas');
-        canvas.style.position = 'fixed';
-        canvas.style.top = '0';
-        canvas.style.left = '0';
-        canvas.style.width = '100%';
-        canvas.style.height = '100%';
-        canvas.style.pointerEvents = 'none';
-        canvas.style.zIndex = '0';
-        document.body.insertBefore(canvas, document.body.firstChild);
-        
-        const ctx = canvas.getContext('2d');
-        canvas.width = window.innerWidth;
-        canvas.height = window.innerHeight;
-        
-        const particles = [];
-        const particleCount = 50;
-        
-        class Particle {
-            constructor() {
-                this.x = Math.random() * canvas.width;
-                this.y = Math.random() * canvas.height;
-                this.size = Math.random() * 2 + 1;
-                this.speedX = Math.random() * 0.5 - 0.25;
-                this.speedY = Math.random() * 0.5 - 0.25;
-                this.opacity = Math.random() * 0.5 + 0.2;
-            }
-            
-            update() {
-                this.x += this.speedX;
-                this.y += this.speedY;
-                
-                if (this.x > canvas.width) this.x = 0;
-                if (this.x < 0) this.x = canvas.width;
-                if (this.y > canvas.height) this.y = 0;
-                if (this.y < 0) this.y = canvas.height;
-            }
-            
-            draw() {
-                ctx.fillStyle = `rgba(59, 130, 246, ${this.opacity})`;
-                ctx.beginPath();
-                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
-                ctx.fill();
-            }
-        }
-        
-        for (let i = 0; i < particleCount; i++) {
-            particles.push(new Particle());
-        }
-        
-        function animateParticles() {
-            ctx.clearRect(0, 0, canvas.width, canvas.height);
-            
-            particles.forEach(particle => {
-                particle.update();
-                particle.draw();
-            });
-            
-            requestAnimationFrame(animateParticles);
-        }
-        
-        animateParticles();
-        
-        window.addEventListener('resize', () => {
-            canvas.width = window.innerWidth;
-            canvas.height = window.innerHeight;
-        });
-    </script>
+    <script src="scripts.js"></script>
 </body>
 </html>
