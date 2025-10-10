@@ -6,6 +6,9 @@
     <title>Mi Portafolio - Ingeniero en Sistemas</title>
         <link rel="stylesheet" href="styles.css">
             <link rel="stylesheet" type='text/css' href="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/devicon.min.css" />
+            <link rel="preconnect" href="https://fonts.googleapis.com">
+            <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+            <link href="https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100..900;1,100..900&family=Roboto+Slab:wght@100..900&display=swap" rel="stylesheet">
 </head>
 <body>
     <div class="container">
@@ -96,7 +99,7 @@
             </div>
         </section>
         <section id="stack" class="stack-section">
-  <h2 style="text-align: start; margin-left: 5%;">Mi stack</h2>
+  <h2 style="text-align: center; margin-left: 5%;">Mi stack</h2>
   <div class="stack-grid">
     <div class="stack-item">
       <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/html5/html5-original.svg" alt="html5">
@@ -150,101 +153,122 @@
 </section>
         <section id="proyectos" class="projects-carousel-section">
   <h2>Proyectos Destacados</h2>
-
+<!-- Botón de pausa/reproducir -->
+    <button id="carousel-toggle" class="carousel-toggle">⏸</button>
   <div class="carousel-container">
     <button class="carousel-btn prev">&#10094;</button>
+
     <div class="carousel-track">
       <!-- Proyecto 1 -->
       <div class="project-card active">
-        <h3>Omnimercado</h3>
-        <p class="project-type">Pagina web de e-commerce tecnológico</p>
-        <p class="project-desc">
-          Sitio web de e-commerce desarrollado con Shopify HTML Y CSS.
-        </p>
-        <div class="project-tags">
-          <span class="tag">HTML</span>
-          <span class="tag">Shopify</span>
-          <span class="tag">JavaScript</span>
-          <span class="tag">CSS</span>
+        <img src="assets/omnimercado.png" alt="Omnimercado" class="project-img" />
+        <div class="project-info">
+          <h3>Omnimercado</h3>
+          <p class="project-type">E-commerce tecnológico</p>
+          <p class="project-desc">
+            Sitio web de e-commerce desarrollado con Shopify, HTML y CSS. Optimizado para dispositivos móviles y con diseño atractivo.
+          </p>
+          <div class="project-tags">
+            <span class="tag">HTML</span>
+            <span class="tag">Shopify</span>
+            <span class="tag">JavaScript</span>
+            <span class="tag">CSS</span>
+          </div>
         </div>
       </div>
 
       <!-- Proyecto 2 -->
       <div class="project-card">
-        <h3>Landing Page Corporativa</h3>
-        <p class="project-type">Página Web</p>
-        <p class="project-desc">
-          Sitio web moderno y responsivo para empresa local, con diseño atractivo y optimizado para conversión.
-        </p>
-        <div class="project-tags">
-          <span class="tag">HTML5</span>
-          <span class="tag">CSS3</span>
-          <span class="tag">JavaScript</span>
+        <img src="assets/bieeco.png" alt="Bieeco" class="project-img" />
+        <div class="project-info">
+          <h3>Bieeco</h3>
+          <p class="project-type">Página Web desarrollada con Odoo 18 para Bieeco</p>
+          <p class="project-desc">
+            Sitio web moderno y responsivo para empresa local, con diseño centrado en conversión y branding corporativo.
+          </p>
+          <div class="project-tags">
+            <span class="tag">HTML5</span>
+            <span class="tag">Odoo</span>
+            <span class="tag">JavaScript</span>
+          </div>
         </div>
       </div>
 
       <!-- Proyecto 3 -->
       <div class="project-card">
-        <h3>Automatización con Python</h3>
-        <p class="project-type">Proyecto Personal</p>
-        <p class="project-desc">
-          Scripts de automatización para tareas repetitivas, procesamiento de datos y generación de reportes automáticos.
-        </p>
-        <div class="project-tags">
-          <span class="tag">Python</span>
-          <span class="tag">Pandas</span>
-          <span class="tag">Automation</span>
+        <img src="assets/jiak.png" alt="jiak" class="project-img" />
+        <div class="project-info">
+          <h3>JIAK</h3>
+          <p class="project-type">Pagina web desarrollada con Shopify</p>
+          <p class="project-desc">
+            Pagina web de e-commerce desarrollada con Shopify, HTML y CSS. Optimizado para dispositivos móviles y con diseño atractivo.
+          </p>
+          <div class="project-tags">
+            <span class="tag">Shopify</span>
+            <span class="tag">HTML</span>
+            <span class="tag">CSS</span>
+          </div>
         </div>
       </div>
 
       <!-- Proyecto 4 -->
       <div class="project-card">
-        <h3>API REST con C#</h3>
-        <p class="project-type">Proyecto Personal</p>
-        <p class="project-desc">
-          API RESTful desarrollada en C# para gestión de inventario, con autenticación y documentación completa.
-        </p>
-        <div class="project-tags">
-          <span class="tag">C#</span>
-          <span class="tag">.NET</span>
-          <span class="tag">SQL Server</span>
-          <span class="tag">REST API</span>
+        <img src="assets/oleummex.png" alt="oleummex" class="project-img" />
+        <div class="project-info">
+          <h3>Oleummex</h3>
+          <p class="project-type">Página Web desarrollada con Odoo 18 para Oleummex</p>
+          <p class="project-desc">
+            Sitio web moderno y responsivo para empresa dedicada a la venta de aceites industriales y de motor.
+          </p>
+          <div class="project-tags">
+            <span class="tag">HTML5</span>
+            <span class="tag">Odoo</span>
+            <span class="tag">JavaScript</span>
+          </div>
         </div>
       </div>
-
       <!-- Proyecto 5 -->
       <div class="project-card">
-        <h3>Portfolio Interactivo</h3>
-        <p class="project-type">Página Web</p>
-        <p class="project-desc">
-          Sitio web personal con animaciones suaves, diseño moderno y secciones interactivas para mostrar habilidades y proyectos.
-        </p>
-        <div class="project-tags">
-          <span class="tag">HTML</span>
-          <span class="tag">CSS</span>
-          <span class="tag">JavaScript</span>
+        <img src="assets/bieeblock.png" alt="bieeblock" class="project-img" />
+        <div class="project-info">
+          <h3>Bieeblock</h3>
+          <p class="project-type">Página Web desarrollada con Odoo 18 para Bieeblock</p>
+          <p class="project-desc">
+            Página web desarrollada con Odoo 18 para empresa de fabricación de adoquines y blocks.
+          </p>
+          <div class="project-tags">
+            <span class="tag">HTML5</span>
+            <span class="tag">Odoo</span>
+            <span class="tag">JavaScript</span>
+          </div>
         </div>
       </div>
 
       <!-- Proyecto 6 -->
       <div class="project-card">
-        <h3>Dashboard de Análisis</h3>
-        <p class="project-type">Proyecto Profesional</p>
-        <p class="project-desc">
-          Panel de control interactivo para visualización de métricas y KPIs en tiempo real con gráficos dinámicos.
-        </p>
-        <div class="project-tags">
-          <span class="tag">JavaScript</span>
-          <span class="tag">PHP</span>
-          <span class="tag">MySQL</span>
-          <span class="tag">Charts</span>
+        <img src="assets/kuantiva.png" alt="kuantiva" class="project-img" />
+        <div class="project-info">
+          <h3>Kuantiva</h3>
+          <p class="project-type">Página Web desarrollada con Odoo 18 para Kuantiva</p>
+          <p class="project-desc">
+            Página web desarrollada con Odoo 18 para empresa de soluciones empresariales tecnológicas y cuantificación de datos.
+          </p>
+          <div class="project-tags">
+            <span class="tag">HTML5</span>
+            <span class="tag">Odoo</span>
+            <span class="tag">JavaScript</span>
+          </div>
         </div>
       </div>
+
+      <!-- Agrega más proyectos según necesites -->
     </div>
+
     <button class="carousel-btn next">&#10095;</button>
 
     <!-- Indicadores -->
     <div class="carousel-indicators"></div>
+    
   </div>
 </section>
 
@@ -286,6 +310,15 @@
             <p>&copy; 2025 Angel Méndez Aguilar. Todos los derechos reservados.</p>
         </footer>
     </div>
-    <script src="scripts.js"></script>
+    <script src="scripts.js" defer></script>
+    <!-- Botón flotante de WhatsApp -->
+<a href="https://wa.me/529933053417" 
+   class="whatsapp-float" 
+   target="_blank" 
+   rel="noopener" 
+   title="Contáctame por WhatsApp">
+  <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/whatsapp.svg" alt="WhatsApp" class="whatsapp-icon">
+  <span class="whatsapp-tooltip">Contáctame por WhatsApp</span>
+</a>
 </body>
 </html>

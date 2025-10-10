@@ -243,54 +243,79 @@
         });
 
   // Animación del carrusel de proyectos
-  const track = document.querySelector('.carousel-track');
+  document.addEventListener("DOMContentLoaded", () => {
+  const track = document.querySelector(".carousel-track");
   const cards = Array.from(track.children);
-  const prevButton = document.querySelector('.carousel-btn.prev');
-  const nextButton = document.querySelector('.carousel-btn.next');
-  const indicatorsContainer = document.querySelector('.carousel-indicators');
+  const prevButton = document.querySelector(".carousel-btn.prev");
+  const nextButton = document.querySelector(".carousel-btn.next");
+  const indicatorsContainer = document.querySelector(".carousel-indicators");
+  const toggleButton = document.getElementById("carousel-toggle");
 
   let currentIndex = 0;
+  let autoSlide = true;
+  let slideInterval;
 
-  // Crear los puntos según el número de proyectos
-  cards.forEach((_, i) => {
-    const dot = document.createElement('span');
-    dot.classList.add('dot');
-    if (i === 0) dot.classList.add('active');
-    dot.addEventListener('click', () => {
-      currentIndex = i;
-      updateCarousel();
-    });
-    indicatorsContainer.appendChild(dot);
+  // Crear indicadores
+  cards.forEach((_, index) => {
+    const indicator = document.createElement("span");
+    indicator.classList.add("indicator");
+    if (index === 0) indicator.classList.add("active");
+    indicatorsContainer.appendChild(indicator);
   });
+  const indicators = Array.from(indicatorsContainer.children);
 
-  const dots = Array.from(document.querySelectorAll('.carousel-indicators .dot'));
+  // Función para mostrar un proyecto específico
+  function showSlide(index) {
+    cards.forEach(card => card.classList.remove("active"));
+    indicators.forEach(dot => dot.classList.remove("active"));
 
-  function updateCarousel() {
-    track.style.transform = `translateX(-${currentIndex * 100}%)`;
+    cards[index].classList.add("active");
+    indicators[index].classList.add("active");
 
-    cards.forEach((card, index) =>
-      card.classList.toggle('active', index === currentIndex)
-    );
-
-    dots.forEach((dot, index) =>
-      dot.classList.toggle('active', index === currentIndex)
-    );
+    track.style.transform = `translateX(-${index * 100}%)`;
+    currentIndex = index;
   }
 
-  nextButton.addEventListener('click', () => {
-    currentIndex = (currentIndex + 1) % cards.length;
-    updateCarousel();
-  });
-
-  prevButton.addEventListener('click', () => {
+  // Botones de navegación
+  prevButton.addEventListener("click", () => {
     currentIndex = (currentIndex - 1 + cards.length) % cards.length;
-    updateCarousel();
+    showSlide(currentIndex);
   });
 
-  // Auto-cambio cada 6 segundos
-  setInterval(() => {
+  nextButton.addEventListener("click", () => {
     currentIndex = (currentIndex + 1) % cards.length;
-    updateCarousel();
-  }, 6000);
+    showSlide(currentIndex);
+  });
 
-  updateCarousel();
+  // Indicadores clicables
+  indicators.forEach((dot, index) => {
+    dot.addEventListener("click", () => showSlide(index));
+  });
+
+  // Auto-slide cada 4 segundos
+  function startAutoSlide() {
+    slideInterval = setInterval(() => {
+      currentIndex = (currentIndex + 1) % cards.length;
+      showSlide(currentIndex);
+    }, 4000);
+  }
+
+  function stopAutoSlide() {
+    clearInterval(slideInterval);
+  }
+
+  // Iniciar automático
+  startAutoSlide();
+
+  // ✅ Botón de pausa/reproducir
+  toggleButton.addEventListener("click", () => {
+    autoSlide = !autoSlide;
+    if (autoSlide) {
+      startAutoSlide();
+      toggleButton.textContent = "⏸";
+    } else {
+      stopAutoSlide();
+      toggleButton.textContent = "▶";
+    }
+  });
+});
