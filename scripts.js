@@ -319,3 +319,45 @@
     }
   });
 });
+
+document.addEventListener('DOMContentLoaded', () => {
+    const settingsBtn = document.getElementById('settings-btn');
+    const colorPalette = document.getElementById('color-palette');
+    const colorSwatches = document.querySelectorAll('.color-swatch');
+    const root = document.documentElement;
+
+    // 1. Cargar el color guardado al iniciar la página
+    const savedColor = localStorage.getItem('primaryColor');
+    if (savedColor) {
+        // Corrección del nombre de la variable de CSS. Debe ser --primary-color
+        root.style.setProperty('--primary-color', savedColor);
+    }
+
+    // 2. Mostrar/ocultar la paleta de colores al hacer clic en el engranaje
+    settingsBtn.addEventListener('click', () => {
+        colorPalette.classList.toggle('visible');
+    });
+
+    // 3. Cambiar el color del tema al hacer clic en una muestra
+    colorSwatches.forEach(swatch => {
+        swatch.addEventListener('click', () => {
+            const newColor = swatch.dataset.color;
+            
+            // Actualizar la variable CSS en tiempo real
+            root.style.setProperty('--primary-color', newColor);
+            
+            // Guardar el nuevo color en el almacenamiento local
+            localStorage.setItem('primaryColor', newColor);
+            
+            // Ocultar la paleta después de seleccionar un color
+            colorPalette.classList.remove('visible');
+        });
+    });
+
+    // Opcional: Ocultar la paleta si se hace clic fuera de ella
+    document.addEventListener('click', (event) => {
+        if (!settingsBtn.contains(event.target) && !colorPalette.contains(event.target)) {
+            colorPalette.classList.remove('visible');
+        }
+    });
+});
