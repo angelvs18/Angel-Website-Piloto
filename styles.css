@@ -1082,3 +1082,70 @@ header p {
     /* Este filtro complejo es necesario para colorear imágenes PNG. Lo ajustaremos con JS */
 }
 
+/* --- ESTILOS PARA LA PÁGINA DE AGRADECIMIENTO --- */
+
+.thank-you-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    margin-left: 0; /* Anulamos el margen para que esté centrada */
+}
+
+.thank-you-content {
+    background: rgba(15, 23, 42, 0.95);
+    padding: 50px;
+    border-radius: 20px;
+    text-align: center;
+    max-width: 600px;
+    border: 1px solid var(--primary-color);
+    box-shadow: 0 10px 40px rgba(0,0,0,0.5);
+    color: #cbd5e1;
+}
+
+.thank-you-content .success-icon {
+    display: inline-block;
+    width: 80px;
+    height: 80px;
+    line-height: 80px;
+    font-size: 50px;
+    border-radius: 50%;
+    background-color: var(--primary-color);
+    color: #fff;
+    margin-bottom: 20px;
+}
+
+.thank-you-content h1 {
+    color: #fff;
+    font-size: 2.5em;
+    margin-bottom: 15px;
+}
+
+.thank-you-content p {
+    font-size: 1.2em;
+    margin-bottom: 30px;
+}
+
+.return-btn {
+    display: inline-block;
+    padding: 12px 25px;
+    background-color: transparent;
+    border: 2px solid var(--primary-color);
+    color: var(--primary-color);
+    text-decoration: none;
+    border-radius: 8px;
+    font-weight: bold;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.return-btn:hover {
+    background-color: var(--primary-color);
+    color: #fff;
+}
+
+/* Ajuste para que no interfiera el header fijo */
+@media (min-width: 901px) {
+    .thank-you-container {
+        padding-left: 320px; /* Compensa el ancho del header fijo en escritorio */
+    }
+}
