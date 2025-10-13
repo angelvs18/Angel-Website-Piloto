@@ -1034,3 +1034,51 @@ header p {
   'GRAD' 0,
   'opsz' 24
 }
+
+#floating-nav {
+    position: fixed;
+    top: 50%;
+    right: 30px;
+    transform: translateY(-50%); /* Centra verticalmente */
+    background-color: rgba(15, 23, 42, 0.8);
+    backdrop-filter: blur(5px);
+    border-radius: 30px;
+    padding: 15px 10px;
+    z-index: 1000;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+#floating-nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+#floating-nav a {
+    display: block;
+    transition: transform 0.3s ease;
+}
+
+#floating-nav a:hover {
+    transform: scale(1.2);
+}
+
+#floating-nav img {
+    width: 24px;
+    height: 24px;
+    /* Por defecto, los iconos son blancos */
+    filter: brightness(0) invert(1);
+    transition: filter 0.3s ease;
+}
+
+/* --- ESTILO PARA EL ICONO ACTIVO --- */
+#floating-nav a.active img {
+    /* Cuando un enlace tiene la clase 'active', el icono toma el color primario */
+    filter: invert(56%) sepia(99%) saturate(2331%) hue-rotate(205deg) brightness(97%) contrast(93%);
+    /* Este filtro complejo es necesario para colorear imágenes PNG. Lo ajustaremos con JS */
+}
+

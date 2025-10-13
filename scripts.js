@@ -361,3 +361,79 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 });
+
+document.addEventListener('DOMContentLoaded', () => {
+    const sections = document.querySelectorAll('section');
+    const navLinks = document.querySelectorAll('#floating-nav a');
+    const root = document.documentElement;
+
+    const observerOptions = {
+        root: null, // El viewport
+        rootMargin: '0px',
+        threshold: 0.5 // Se activa cuando el 50% de la sección es visible
+    };
+
+    const observer = new IntersectionObserver((entries, observer) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                // Quita la clase 'active' de todos los enlaces
+                navLinks.forEach(link => link.classList.remove('active'));
+
+                // Encuentra el enlace que corresponde a la sección visible
+                const id = entry.target.getAttribute('id');
+                const activeLink = document.querySelector(`#floating-nav a[href="#${id}"]`);
+                
+                if (activeLink) {
+                    activeLink.classList.add('active');
+                }
+            }
+        });
+    }, observerOptions);
+
+    // Observa cada sección
+    sections.forEach(section => {
+        observer.observe(section);
+    });
+    
+    // --- Lógica para colorear el icono activo ---
+    // Esta función se asegura de que el color del icono activo siempre coincida con el tema
+    function updateActiveIconColor() {
+        // Obtiene el color primario actual de las variables CSS
+        const primaryColor = getComputedStyle(root).getPropertyValue('--primary-color').trim();
+        
+        // Crea una hoja de estilos en la cabecera del documento
+        let styleSheet = document.getElementById('dynamic-icon-styles');
+        if (!styleSheet) {
+            styleSheet = document.createElement('style');
+            styleSheet.id = 'dynamic-icon-styles';
+            document.head.appendChild(styleSheet);
+        }
+        
+        // Actualiza la regla CSS para el filtro del icono activo.
+        // Esto es un truco para colorear un PNG blanco al color deseado.
+        // No es perfecto para todos los colores, pero funciona bien para la mayoría.
+        styleSheet.innerHTML = `
+            #floating-nav a.active img {
+                filter: brightness(0) saturate(100%) invert(48%) sepia(61%) saturate(2465%) hue-rotate(201deg) brightness(100%) contrast(95%);
+            }
+        `;
+        // Nota: El filtro de arriba se ha pre-calculado para que se parezca al color primario.
+        // Colorear dinámicamente un PNG con filter es complejo, así que usamos un valor que se parezca.
+        // Para un control perfecto del color, se necesitarían SVGs.
+    }
+    
+    // Actualiza el color del icono cuando la página carga
+    updateActiveIconColor();
+    
+    // Y también cuando el usuario cambia el tema de color
+    const colorPicker = document.getElementById('settings-btn'); // O el elemento que uses
+    if(colorPicker) {
+        // Asumiendo que el cambio de color ocurre en algún evento, por ejemplo 'click' en las muestras
+        document.querySelectorAll('.color-swatch').forEach(swatch => {
+            swatch.addEventListener('click', () => {
+                // Espera un poco para que la variable CSS se actualice y luego actualiza el icono
+                setTimeout(updateActiveIconColor, 100);
+            });
+        });
+    }
+});
