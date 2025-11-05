@@ -44,14 +44,14 @@
     bottom: 60px; /* Se posiciona encima del botón */
     left: 50%;
     transform: translateX(-50%);
-    background-color: #0a0e27;
-    border: 1px solid var(--primary-color);
+    background-color: transparent;
+    border: none;
     border-radius: 10px;
     padding: 10px;
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 8px;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.4);
+    box-shadow: none;
     
     /* Inicialmente oculta y con transición */
     opacity: 0;
@@ -246,13 +246,13 @@ header p {
         }
 
         section {
-            background: rgba(15, 23, 42, 0.95);
+            background: transparent;
             padding: 40px;
             border-radius: 20px;
             margin-bottom: 30px;
-            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.4);
+            box-shadow: none;
             animation: slideUp 0.8s ease-out;
-            border: 1px solid rgba(59, 130, 246, 0.2);
+            border: none;
         }
 
         h2 {
@@ -326,9 +326,10 @@ header p {
 }
 
 .projects-carousel-section {
-  background-color: #0d0d0d;
+  background-color: none;
+  background: transparent;
   padding: 80px 20px;
-  text-align: center;
+  text-align: left;
   color: #fff;
 }
 
@@ -336,6 +337,7 @@ header p {
   font-size: 2.5rem;
   margin-bottom: 50px;
   font-weight: 700;
+  text-align: start;
 }
 
 .carousel-container {
@@ -478,10 +480,11 @@ header p {
   }
 }
 .projects-carousel-section {
-  background: #0f0f0f;
-  color: #fff;
-  padding: 30px 20px;
+  background-color: none;
+  background: transparent;
+  padding: 80px 20px;
   text-align: center;
+  color: #fff;
 }
 
 .projects-carousel-section h2 {
@@ -506,15 +509,16 @@ header p {
 .project-card {
   min-width: 100%;
   box-sizing: border-box;
-  background: #1a1a1a;
+  background: transparent;
   border-radius: 16px;
-  box-shadow: 0 0 15px rgba(59, 130, 246, 0.2);
+  border: none;
+  box-shadow: none;
   transition: transform 0.4s ease, box-shadow 0.4s ease;
 }
 
 .project-card:hover {
   transform: translateY(-5px);
-  box-shadow: 0 0 25px rgba(59, 130, 246, 0.4);
+  box-shadow: none;
 }
 
 /* Imagen del proyecto */
@@ -633,7 +637,7 @@ header p {
         }
 
 .stack-section {
-  background-color: #111;
+  background-color: transparent;
   padding: 60px 20px;
   color: #fff;
   text-align: left;
@@ -643,7 +647,7 @@ header p {
   font-size: 2.5rem;
   margin-bottom: 40px;
   font-weight: 700;
-  text-align: center;
+  text-align: start;
 }
 
 .stack-grid {
@@ -655,7 +659,7 @@ header p {
 }
 
 .stack-item {
-  background: #1b1b1b;
+  background: transparent;
   border-radius: 16px;
   padding: 35px 20px;
   width: 100%;
@@ -669,8 +673,7 @@ header p {
 /* Efecto hover general */
 .stack-item:hover {
   transform: translateY(-8px);
-  background: #222;
-  box-shadow: 0 0 25px rgba(59, 130, 246, 0.4);
+  background: transparent;
 }
 
 /* --- Animación de iconos --- */
@@ -758,21 +761,17 @@ header p {
         }
 
         .project-card {
-            background: rgba(30, 41, 59, 0.507);
             border-radius: 15px;
             overflow: hidden;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
             transition: transform 0.3s, box-shadow 0.3s;
-            border: 1px solid rgba(59, 130, 246, 0.2);
         }
 
         .project-card:hover {
             transform: translateY(-10px);
-            box-shadow: 0 15px 40px rgba(59, 130, 246, 0.4);
         }
 
         .project-header {
-            background: linear-gradient(135deg, rgba(30, 58, 138, 0.9) 0%, rgba(59, 130, 246, 0.9) 100%);
+            background: transparent;
             padding: 25px;
             color: white;
         }
