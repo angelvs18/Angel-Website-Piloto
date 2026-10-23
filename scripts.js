@@ -1,363 +1,130 @@
-        // Animación de escritura para el nombre
-        const nameElement = document.querySelector('header h1');
-        const originalText = nameElement.textContent;
-        nameElement.textContent = '';
-        let charIndex = 0;
-        
-        function typeWriter() {
-            if (charIndex < originalText.length) {
-                nameElement.textContent += originalText.charAt(charIndex);
-                charIndex++;
-                setTimeout(typeWriter, 100);
-            }
+const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+const WHATSAPP = '529933053417';
+const EMAIL = 'angel.maamx@gmail.com';
+
+// ---------- Aparición al hacer scroll (una sola vez) ----------
+const revealObserver = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+            entry.target.classList.add('is-in');
+            revealObserver.unobserve(entry.target);
         }
-        
-        setTimeout(typeWriter, 500);
-        
-        // Animación de aparición al hacer scroll
-        const observerOptions = {
-            threshold: 0.2,
-            rootMargin: '0px 0px -50px 0px'
-        };
-        
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.style.opacity = '0';
-                    entry.target.style.transform = 'translateY(30px)';
-                    
-                    setTimeout(() => {
-                        entry.target.style.transition = 'opacity 0.8s, transform 0.8s';
-                        entry.target.style.opacity = '1';
-                        entry.target.style.transform = 'translateY(0)';
-                    }, 100);
-                    
-                    observer.unobserve(entry.target);
-                }
-            });
-        }, observerOptions);
-        
-        document.querySelectorAll('section').forEach(section => {
-            observer.observe(section);
-        });
-        
-        // Animación de las skill cards al aparecer
-        const skillCards = document.querySelectorAll('.skill-category');
-        const skillObserver = new IntersectionObserver((entries) => {
-            entries.forEach((entry, index) => {
-                if (entry.isIntersecting) {
-                    setTimeout(() => {
-                        entry.target.style.opacity = '0';
-                        entry.target.style.transform = 'scale(0.8)';
-                        
-                        setTimeout(() => {
-                            entry.target.style.transition = 'all 0.5s ease-out';
-                            entry.target.style.opacity = '1';
-                            entry.target.style.transform = 'scale(1)';
-                        }, 50);
-                    }, index * 150);
-                    
-                    skillObserver.unobserve(entry.target);
-                }
-            });
-        }, observerOptions);
-        
-        skillCards.forEach(card => skillObserver.observe(card));
-        
-        // Animación de las project cards
-        const projectCards = document.querySelectorAll('.project-card');
-        const projectObserver = new IntersectionObserver((entries) => {
-            entries.forEach((entry, index) => {
-                if (entry.isIntersecting) {
-                    setTimeout(() => {
-                        entry.target.style.opacity = '0';
-                        entry.target.style.transform = 'translateX(-50px) rotateY(-15deg)';
-                        
-                        setTimeout(() => {
-                            entry.target.style.transition = 'all 0.6s ease-out';
-                            entry.target.style.opacity = '1';
-                            entry.target.style.transform = 'translateX(0) rotateY(0)';
-                        }, 50);
-                    }, index * 120);
-                    
-                    projectObserver.unobserve(entry.target);
-                }
-            });
-        }, observerOptions);
-        
-        projectCards.forEach(card => projectObserver.observe(card));
-        
-        // Animación de las certification cards
-        const certCards = document.querySelectorAll('.certification-card');
-        const certObserver = new IntersectionObserver((entries) => {
-            entries.forEach((entry, index) => {
-                if (entry.isIntersecting) {
-                    setTimeout(() => {
-                        entry.target.style.opacity = '0';
-                        entry.target.style.transform = 'scale(0.5) rotate(-5deg)';
-                        
-                        setTimeout(() => {
-                            entry.target.style.transition = 'all 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55)';
-                            entry.target.style.opacity = '1';
-                            entry.target.style.transform = 'scale(1) rotate(0)';
-                        }, 50);
-                    }, index * 200);
-                    
-                    certObserver.unobserve(entry.target);
-                }
-            });
-        }, observerOptions);
-        
-        certCards.forEach(card => certObserver.observe(card));
-        
-        // Efecto parallax en el fondo
-        let ticking = false;
-        
-        window.addEventListener('scroll', () => {
-            if (!ticking) {
-                window.requestAnimationFrame(() => {
-                    const scrolled = window.pageYOffset;
-                    const parallaxElements = document.querySelectorAll('section');
-                    
-                    parallaxElements.forEach(el => {
-                        const speed = 0.5;
-                        const yPos = -(scrolled * speed);
-                        el.style.backgroundPosition = `center ${yPos}px`;
-                    });
-                    
-                    ticking = false;
-                });
-                
-                ticking = true;
-            }
-        });
-        
-        // Smooth scroll para los links de navegación
-        document.querySelectorAll('nav a').forEach(anchor => {
-            anchor.addEventListener('click', function(e) {
-                e.preventDefault();
-                const targetId = this.getAttribute('href');
-                const targetSection = document.querySelector(targetId);
-                
-                targetSection.scrollIntoView({
-                    behavior: 'smooth',
-                    block: 'start'
-                });
-            });
-        });
-        
-        // Animación de contador para los años de experiencia
-        const experienceItems = document.querySelectorAll('.experience-item');
-        experienceItems.forEach(item => {
-            item.addEventListener('mouseenter', function() {
-                this.style.transform = 'translateX(10px)';
-                this.style.transition = 'transform 0.3s ease';
-            });
-            
-            item.addEventListener('mouseleave', function() {
-                this.style.transform = 'translateX(0)';
-            });
-        });
-        
-        // Efecto de brillo en las skill tags al pasar el mouse
-        const tags = document.querySelectorAll('.tag');
-        tags.forEach(tag => {
-            tag.addEventListener('mouseenter', function() {
-                this.style.boxShadow = '0 0 15px rgba(59, 130, 246, 0.6)';
-                this.style.transform = 'scale(1.1)';
-                this.style.transition = 'all 0.3s ease';
-            });
-            
-            tag.addEventListener('mouseleave', function() {
-                this.style.boxShadow = 'none';
-                this.style.transform = 'scale(1)';
-            });
-        });
-        
-        // Animación de partículas en el fondo (efecto sutil)
-        const canvas = document.createElement('canvas');
-        canvas.style.position = 'fixed';
-        canvas.style.top = '0';
-        canvas.style.left = '0';
-        canvas.style.width = '100%';
-        canvas.style.height = '100%';
-        canvas.style.pointerEvents = 'none';
-        canvas.style.zIndex = '0';
-        document.body.insertBefore(canvas, document.body.firstChild);
-        
-        const ctx = canvas.getContext('2d');
-        canvas.width = window.innerWidth;
-        canvas.height = window.innerHeight;
-        
-        const particles = [];
-        const particleCount = 50;
-        
-        class Particle {
-            constructor() {
-                this.x = Math.random() * canvas.width;
-                this.y = Math.random() * canvas.height;
-                this.size = Math.random() * 2 + 1;
-                this.speedX = Math.random() * 0.5 - 0.25;
-                this.speedY = Math.random() * 0.5 - 0.25;
-                this.opacity = Math.random() * 0.5 + 0.2;
-            }
-            
-            update() {
-                this.x += this.speedX;
-                this.y += this.speedY;
-                
-                if (this.x > canvas.width) this.x = 0;
-                if (this.x < 0) this.x = canvas.width;
-                if (this.y > canvas.height) this.y = 0;
-                if (this.y < 0) this.y = canvas.height;
-            }
-            
-            draw() {
-                ctx.fillStyle = `rgba(59, 130, 246, ${this.opacity})`;
-                ctx.beginPath();
-                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
-                ctx.fill();
-            }
-        }
-        
-        for (let i = 0; i < particleCount; i++) {
-            particles.push(new Particle());
-        }
-        
-        function animateParticles() {
-            ctx.clearRect(0, 0, canvas.width, canvas.height);
-            
-            particles.forEach(particle => {
-                particle.update();
-                particle.draw();
-            });
-            
-            requestAnimationFrame(animateParticles);
-        }
-        
-        animateParticles();
-        
-        window.addEventListener('resize', () => {
-            canvas.width = window.innerWidth;
-            canvas.height = window.innerHeight;
-        });
+    });
+}, { rootMargin: '0px 0px -10% 0px', threshold: 0.1 });
 
-  // Animación del carrusel de proyectos
-  document.addEventListener("DOMContentLoaded", () => {
-  const track = document.querySelector(".carousel-track");
-  const cards = Array.from(track.children);
-  const prevButton = document.querySelector(".carousel-btn.prev");
-  const nextButton = document.querySelector(".carousel-btn.next");
-  const indicatorsContainer = document.querySelector(".carousel-indicators");
-  const toggleButton = document.getElementById("carousel-toggle");
+document.querySelectorAll('[data-reveal]').forEach((el) => revealObserver.observe(el));
 
-  let currentIndex = 0;
-  let autoSlide = true;
-  let slideInterval;
+// ---------- Menú en teléfono ----------
+const menuButton = document.querySelector('.nav__menu');
+const navLinks = document.getElementById('nav-links');
 
-  // Crear indicadores
-  cards.forEach((_, index) => {
-    const indicator = document.createElement("span");
-    indicator.classList.add("indicator");
-    if (index === 0) indicator.classList.add("active");
-    indicatorsContainer.appendChild(indicator);
-  });
-  const indicators = Array.from(indicatorsContainer.children);
+function setMenu(open) {
+    navLinks.classList.toggle('is-open', open);
+    menuButton.setAttribute('aria-expanded', String(open));
+    menuButton.setAttribute('aria-label', open ? 'Cerrar menú' : 'Abrir menú');
+}
 
-  // Función para mostrar un proyecto específico
-  function showSlide(index) {
-    cards.forEach(card => card.classList.remove("active"));
-    indicators.forEach(dot => dot.classList.remove("active"));
+menuButton.addEventListener('click', () => setMenu(!navLinks.classList.contains('is-open')));
+navLinks.querySelectorAll('a').forEach((a) => a.addEventListener('click', () => setMenu(false)));
 
-    cards[index].classList.add("active");
-    indicators[index].classList.add("active");
-
-    track.style.transform = `translateX(-${index * 100}%)`;
-    currentIndex = index;
-  }
-
-  // Botones de navegación
-  prevButton.addEventListener("click", () => {
-    currentIndex = (currentIndex - 1 + cards.length) % cards.length;
-    showSlide(currentIndex);
-  });
-
-  nextButton.addEventListener("click", () => {
-    currentIndex = (currentIndex + 1) % cards.length;
-    showSlide(currentIndex);
-  });
-
-  // Indicadores clicables
-  indicators.forEach((dot, index) => {
-    dot.addEventListener("click", () => showSlide(index));
-  });
-
-  // Auto-slide cada 4 segundos
-  function startAutoSlide() {
-    slideInterval = setInterval(() => {
-      currentIndex = (currentIndex + 1) % cards.length;
-      showSlide(currentIndex);
-    }, 4000);
-  }
-
-  function stopAutoSlide() {
-    clearInterval(slideInterval);
-  }
-
-  // Iniciar automático
-  startAutoSlide();
-
-  // ✅ Botón de pausa/reproducir
-  toggleButton.addEventListener("click", () => {
-    autoSlide = !autoSlide;
-    if (autoSlide) {
-      startAutoSlide();
-      toggleButton.textContent = "⏸";
-    } else {
-      stopAutoSlide();
-      toggleButton.textContent = "▶";
-    }
-  });
+document.addEventListener('click', (event) => {
+    if (!navLinks.contains(event.target) && !menuButton.contains(event.target)) setMenu(false);
 });
 
-document.addEventListener('DOMContentLoaded', () => {
-    const settingsBtn = document.getElementById('settings-btn');
-    const colorPalette = document.getElementById('color-palette');
-    const colorSwatches = document.querySelectorAll('.color-swatch');
-    const root = document.documentElement;
-
-    // 1. Cargar el color guardado al iniciar la página
-    const savedColor = localStorage.getItem('primaryColor');
-    if (savedColor) {
-        // Corrección del nombre de la variable de CSS. Debe ser --primary-color
-        root.style.setProperty('--primary-color', savedColor);
+document.addEventListener('keydown', (event) => {
+    if (event.key === 'Escape' && navLinks.classList.contains('is-open')) {
+        setMenu(false);
+        menuButton.focus();
     }
+});
 
-    // 2. Mostrar/ocultar la paleta de colores al hacer clic en el engranaje
-    settingsBtn.addEventListener('click', () => {
-        colorPalette.classList.toggle('visible');
-    });
+// ---------- Solicitud de soporte ----------
+const SERVICES = {
+    'Computadoras': ['Mantenimiento preventivo', 'Diagnóstico y reparación', 'SSD y memoria RAM', 'Formateo e instalación', 'Virus y lentitud', 'Otro'],
+    'Redes e internet': ['Instalación de red y Wi‑Fi', 'Cableado estructurado', 'Internet lento o con cortes', 'Impresoras compartidas', 'Seguridad de red', 'Otro'],
+    'Asesoría TI': ['Compra de equipo', 'Respaldos en la nube', 'Correo y cuentas', 'Soporte remoto', 'Plan de mantenimiento', 'Otro'],
+    'Programación': ['Sitio web o landing page', 'Sistema a la medida con PHP y Laravel', 'Aplicación con Angular', 'Interfaz con React', 'Backend o automatización con Python', 'Odoo, Shopify o WordPress', 'Otro proyecto'],
+};
 
-    // 3. Cambiar el color del tema al hacer clic en una muestra
-    colorSwatches.forEach(swatch => {
-        swatch.addEventListener('click', () => {
-            const newColor = swatch.dataset.color;
-            
-            // Actualizar la variable CSS en tiempo real
-            root.style.setProperty('--primary-color', newColor);
-            
-            // Guardar el nuevo color en el almacenamiento local
-            localStorage.setItem('primaryColor', newColor);
-            
-            // Ocultar la paleta después de seleccionar un color
-            colorPalette.classList.remove('visible');
-        });
-    });
+// Textos que cambian si el visitante pide programación en lugar de soporte
+const COPY = {
+    support: { intro: 'Hola Angel, quiero solicitar soporte TI.', label: '¿Qué pasa?', placeholder: 'Ej. la laptop no enciende desde ayer', subject: 'Soporte TI' },
+    code: { intro: 'Hola Angel, quiero cotizar un proyecto de programación.', label: '¿Qué necesitas?', placeholder: 'Ej. un sitio para mi negocio con catálogo', subject: 'Cotización' },
+};
 
-    // Opcional: Ocultar la paleta si se hace clic fuera de ella
-    document.addEventListener('click', (event) => {
-        if (!settingsBtn.contains(event.target) && !colorPalette.contains(event.target)) {
-            colorPalette.classList.remove('visible');
+const request = document.querySelector('.cta');
+const requestForm = document.getElementById('it-request');
+const serviceSelect = document.getElementById('req-service');
+const nameInput = document.getElementById('req-name');
+const detailInput = document.getElementById('req-detail');
+const requestText = requestForm.querySelector('[data-req-text]');
+const mailLink = requestForm.querySelector('[data-req-mail]');
+const detailLabel = requestForm.querySelector('[data-detail-label]');
+
+// Una sola lista con todos los servicios, agrupados por área.
+// El valor guarda "área|servicio" para distinguir los "Otro" de cada grupo.
+serviceSelect.append(new Option('Elige un servicio…', ''));
+Object.entries(SERVICES).forEach(([area, items]) => {
+    const group = document.createElement('optgroup');
+    group.label = area;
+    items.forEach((item) => group.append(new Option(item, `${area}|${item}`)));
+    serviceSelect.append(group);
+});
+
+function selected() {
+    const [area = '', service = ''] = serviceSelect.value.split('|');
+    return { area, service };
+}
+
+function copy() {
+    return selected().area === 'Programación' ? COPY.code : COPY.support;
+}
+
+function requestMessage() {
+    const { area, service } = selected();
+    const lines = [copy().intro];
+    if (service) lines.push(`Área: ${area}`, `Servicio: ${service}`);
+    if (nameInput.value.trim()) lines.push(`Nombre: ${nameInput.value.trim()}`);
+    if (detailInput.value.trim()) lines.push(`Detalle: ${detailInput.value.trim()}`);
+    return lines.join('\n');
+}
+
+function syncRequest() {
+    detailLabel.textContent = copy().label;
+    detailInput.placeholder = copy().placeholder;
+    const text = requestMessage();
+    requestText.value = text;
+    const { area, service } = selected();
+    const what = service.startsWith('Otro') ? `${area} (otro)` : service;
+    const subject = service ? `${copy().subject}: ${what}` : copy().subject;
+    mailLink.href = `mailto:${EMAIL}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(text)}`;
+}
+
+[serviceSelect, nameInput, detailInput].forEach((el) => el.addEventListener('input', syncRequest));
+serviceSelect.addEventListener('change', syncRequest);
+syncRequest();
+
+// Los botones "Solicitar" de cada tarjeta preseleccionan el primer servicio de su área
+document.querySelectorAll('[data-pick]').forEach((link) => {
+    link.addEventListener('click', () => {
+        const first = [...serviceSelect.querySelectorAll('optgroup')]
+            .find((g) => g.label === link.dataset.pick)?.querySelector('option');
+        if (first && !serviceSelect.value.startsWith(`${link.dataset.pick}|`)) {
+            serviceSelect.value = first.value;
+            syncRequest();
         }
+        request.classList.remove('is-flash');
+        void request.offsetWidth;
+        request.classList.add('is-flash');
+        setTimeout(() => serviceSelect.focus({ preventScroll: true }), reduceMotion.matches ? 0 : 500);
     });
 });
+
+requestForm.addEventListener('submit', (event) => {
+    event.preventDefault();
+    syncRequest();
+    window.open(`https://wa.me/${WHATSAPP}?text=${encodeURIComponent(requestText.value)}`, '_blank', 'noopener');
+});
+
+// ---------- Año del pie ----------
+document.querySelector('[data-year]').textContent = new Date().getFullYear();
